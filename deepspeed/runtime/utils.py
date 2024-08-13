@@ -727,9 +727,9 @@ def memory_status(msg, print_rank=-1, reset_max=False):
 
     get_accelerator().synchronize()
 
-    if reset_max:
-        get_accelerator().reset_max_memory_cached()
-        get_accelerator().reset_max_memory_allocated()
+    #if reset_max:
+    #    get_accelerator().reset_max_memory_cached()
+    #    get_accelerator().reset_max_memory_allocated()
 
     new_alloced = get_accelerator().memory_allocated()
     new_cached = get_accelerator().memory_cached()
@@ -765,6 +765,7 @@ def get_ma_status():
 
 def empty_cache():
     get_accelerator().empty_cache()
+    return
     get_accelerator().reset_peak_memory_stats()
 
 
@@ -789,7 +790,7 @@ def see_memory_usage(message, force=False):
     logger.info(f'CPU Virtual Memory:  used = {used_GB} GB, percent = {vm_stats.percent}%')
 
     # get the peak memory to report correct data, so reset the counter for the next call
-    get_accelerator().reset_peak_memory_stats()
+    # get_accelerator().reset_peak_memory_stats()
 
 
 def call_to_str(base, *args, **kwargs):
